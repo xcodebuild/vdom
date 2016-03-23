@@ -46,7 +46,7 @@ var vdom = function(){
       currentPatch.push({type: 'REMOVE'})
     }else if(oldEl.tagname !== newEl.tagname){
       // when newEl is TextNode newEl.tagname === undefined
-      if(typeof oldEl === 'string'){
+      if(typeof newEl === 'string'){
         currentPatch.push({type: 'TEXT', new_val: newEl})
       }else{
         currentPatch.push({type: 'REPLACE', new_val: newEl})
@@ -206,12 +206,10 @@ var vdom = function(){
   }
 
   function reorderChildren(dom, diffs){
-    var origin_children = []
-
     diffs.forEach(function(diff){
       switch(diff.type){
         case 'ADD':
-          dom.insertBefore(diff.new_val.render(), dom.childNodes[diff.target]) // FIXME
+          dom.insertBefore(diff.new_val.render(), dom.childNodes[diff.target])
           break
         case 'REMOVE':
           dom.removeChild(dom.childNodes[diff.target])
