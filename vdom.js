@@ -239,7 +239,6 @@ var vdom = function(){
             dom.parentNode.replaceChild(patch.new_val.render(). dom)
             break
           case 'PROPS':
-            
             dom.setAttribute(patch.key, patch.new_val)
             break
           case 'TEXT':

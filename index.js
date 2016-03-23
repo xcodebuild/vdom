@@ -16,11 +16,16 @@ var ul_new = vdom.el('ul', {id: 'list'},[
 window.addEventListener('load', function(){
   var renderBtn = document.getElementById('render')
   var patchBtn = document.getElementById('patch')
+  var clearBtn = document.getElementById('clear')
+  
   renderBtn.addEventListener('click', function(){
-    document.body.appendChild(ul.render())
+    document.getElementById('container').appendChild(ul.render())
   })
   patchBtn.addEventListener('click', function(){
     var patches = ul.diff(ul_new)
     vdom.applyPatch(document.getElementsByTagName('ul')[0], patches)
+  })
+  clearBtn.addEventListener('click', function(){
+    document.getElementById('container').innerHTML = ''
   })
 })
